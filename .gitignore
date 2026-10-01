@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+trace_log.jsonl
+output/
+deploy/sdlc-runbook.zip

@@ -1,0 +1,3 @@
+{"type": "service_call", "service": "pii", "operation": "analyzeText", "latency_ms": 8, "success": true, "error": null, "timestamp": "2026-10-01T16:13:33.272920+00:00"}
+{"type": "service_call", "service": "content_safety", "operation": "shieldPrompt", "latency_ms": 5, "success": true, "error": null, "timestamp": "2026-10-01T16:13:33.278678+00:00"}
+{"type": "llm_call", "stage": "classification", "deployment": "amazon.nova-lite-v1:0", "latency_ms": 2373, "success": false, "prompt_tokens": 0, "completion_tokens": 0, "error": "No usable AWS credentials. On EC2, attach the IAM role to the instance; on a laptop, run `aws configure` or `aws sso login`.", "run_id": "20261001-214333-f9379c", "timestamp": "2026-10-01T16:13:35.653207+00:00", "total_tokens": 0, "cost_usd": 0.0}

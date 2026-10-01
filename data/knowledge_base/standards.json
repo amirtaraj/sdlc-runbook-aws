@@ -1,0 +1,134 @@
+[
+  {
+    "id": "STD-ARCH-01",
+    "title": "Prefer a modular monolith for new internal applications",
+    "category": "architecture",
+    "content": "New internal applications with fewer than 5,000 daily users start as a modular monolith: one deployable web API with clearly separated modules, one relational database, and a single-page or server-rendered front end. Split into services only when a module has a different scaling profile, release cadence, or team ownership. Every module exposes its capabilities through an internal interface so it can be extracted later."
+  },
+  {
+    "id": "STD-ARCH-02",
+    "title": "Hosting on Azure Container Apps",
+    "category": "architecture",
+    "content": "Web APIs and background workers are packaged as containers and hosted on Azure Container Apps inside the approved virtual network. Scale rules are HTTP concurrency for APIs and queue length for workers. Public ingress is disabled; access is through the corporate VPN or an internal load balancer."
+  },
+  {
+    "id": "STD-DATA-01",
+    "title": "Relational data store and migrations",
+    "category": "data",
+    "content": "Transactional data is stored in Azure SQL Database or Azure Database for PostgreSQL Flexible Server. Schema changes are applied through versioned migrations checked into the repository. Soft-delete with an audit column set (created_at, created_by, updated_at, updated_by) is required for business entities."
+  },
+  {
+    "id": "STD-DATA-02",
+    "title": "Data classification and synthetic data",
+    "category": "data",
+    "content": "All data is classified as Public, Internal, Confidential, or Restricted (PCI, PHI, PII). Development, testing and demonstrations use synthetic data only. Restricted data is encrypted at rest with AES-256 and in transit with TLS 1.2 or later, and is never written to application logs."
+  },
+  {
+    "id": "STD-SEC-01",
+    "title": "Authentication and authorization",
+    "category": "security",
+    "content": "User sign-in uses Microsoft Entra ID with OpenID Connect. APIs validate access tokens (issuer, audience, expiry, signature) on every request. Authorization is role-based using Entra app roles; each endpoint declares the minimum role it needs. Service-to-service calls use managed identities, not shared secrets."
+  },
+  {
+    "id": "STD-SEC-02",
+    "title": "Secrets management",
+    "category": "security",
+    "content": "Secrets, keys and connection strings are stored in Azure Key Vault and read at runtime through managed identity. Secrets are never committed to source control, printed in logs, or embedded in container images. Keys are rotated at least every 90 days."
+  },
+  {
+    "id": "STD-SEC-03",
+    "title": "AI application guardrails",
+    "category": "security",
+    "content": "Applications that call large language models screen user input for prompt injection and personal data before it reaches the model, treat retrieved documents as untrusted data, constrain model output to a schema, keep a human approval step before any action with side effects, and log every model call with its token usage."
+  },
+  {
+    "id": "STD-OPS-01",
+    "title": "Logging, monitoring and audit",
+    "category": "operations",
+    "content": "Applications emit structured JSON logs and send telemetry to Application Insights. Each request carries a correlation ID. Business-significant actions (approvals, rejections, publishes, permission denials) are written to an append-only audit log that records actor, action, target and outcome. Dashboards show request rate, error rate and p95 latency."
+  },
+  {
+    "id": "STD-OPS-02",
+    "title": "Availability and performance targets",
+    "category": "operations",
+    "content": "Internal line-of-business applications target 99.5% monthly availability, p95 API latency under 500 ms for reads and under 1.5 s for writes, and recovery point objective of 24 hours. Customer-facing applications need an approved exception to set different targets."
+  },
+  {
+    "id": "STD-INT-01",
+    "title": "Integrating with other systems",
+    "category": "integration",
+    "content": "Integrations with HR, finance or identity systems go through their published APIs, never direct database access. Calls use retries with exponential backoff and a timeout. Events that other systems react to are published to Azure Service Bus. Each integration has a named owner and a contract test."
+  },
+  {
+    "id": "STD-UX-01",
+    "title": "Front-end and accessibility",
+    "category": "frontend",
+    "content": "Front ends are responsive from 360 px wide, meet WCAG 2.1 AA, and support keyboard navigation. Forms validate on the client and the server. User-facing errors explain what happened and what to do next without exposing internal details."
+  },
+  {
+    "id": "STD-NOTIF-01",
+    "title": "Notifications",
+    "category": "integration",
+    "content": "Email and Teams notifications are sent through the shared notification service rather than directly from each application. Notifications are asynchronous, idempotent, and include a link back to the relevant record. Users can opt out of non-essential notifications."
+  },
+  {
+    "id": "STD-DEV-01",
+    "title": "Definition of done",
+    "category": "delivery",
+    "content": "A task is done when code is reviewed by one other engineer, unit tests cover the new logic, integration tests pass in the CI pipeline, the change is deployed to the test environment, and documentation or runbooks are updated. Infrastructure is defined as code with Bicep or Terraform."
+  },
+  {
+    "id": "STD-EST-01",
+    "title": "Estimation guidelines",
+    "category": "delivery",
+    "content": "Tasks are estimated in hours or days of focused effort by one engineer. No single task exceeds three days; larger work is split. Estimates include writing tests. Integration and security tasks historically overrun more than front-end or documentation tasks and should be estimated with extra contingency."
+  },
+  {
+    "id": "STD-CODE-01",
+    "title": "Code structure and naming",
+    "category": "coding",
+    "content": "Follow the chosen tech stack's project layout and naming conventions exactly. One responsibility per module, class or component. Functions do one thing and stay under about 40 lines. Names describe intent (approveLeaveRequest, not process). No abbreviations except well-known ones (id, url, api). No commented-out code or unused imports in a merged change."
+  },
+  {
+    "id": "STD-CODE-02",
+    "title": "Error handling",
+    "category": "coding",
+    "content": "Validate all external input at the boundary (API request, message, file) and reject it with a clear error before business logic runs. Use typed or named errors for expected failures and map them to responses in one place (for example HTTP 400 validation, 404 not found, 409 conflict). Never swallow exceptions silently; never return stack traces or internal details to callers. Retries only for transient failures, with backoff and a limit."
+  },
+  {
+    "id": "STD-CODE-03",
+    "title": "Logging and observability in code",
+    "category": "coding",
+    "content": "Log in structured JSON with a correlation id on every request. Log levels: error for failures needing action, warning for recovered problems, info for business events (created, approved, published), debug for diagnostics. Never log secrets, tokens or personal data. Emit a metric or trace span for every external call with its duration and outcome."
+  },
+  {
+    "id": "STD-CODE-04",
+    "title": "Automated testing",
+    "category": "coding",
+    "content": "Every task ships with tests. Unit tests cover business rules and edge cases; integration tests cover each API endpoint and database interaction against a real test database or container; end-to-end tests cover the main user journeys. Tests are named after the behaviour they check, are independent of each other, and use synthetic data only. New business logic aims for at least 80% line coverage. A failing test blocks the merge."
+  },
+  {
+    "id": "STD-CODE-05",
+    "title": "API design conventions",
+    "category": "coding",
+    "content": "REST resources use plural nouns (/bookings, /rooms/{id}); verbs only for actions that are not CRUD (POST /bookings/{id}/check-in). JSON bodies use camelCase. List endpoints are paginated (page, pageSize, total). Errors use one body shape: {code, message, details}. Every endpoint documents request, response and error cases in the OpenAPI specification and enforces authorization by role."
+  },
+  {
+    "id": "STD-CODE-06",
+    "title": "Secure coding",
+    "category": "coding",
+    "content": "Use parameterised queries or the ORM; never build SQL from strings. Encode output in the UI to prevent XSS. Check authorization on the server for every action, not only in the UI. Keep dependencies on supported versions and scan them in CI. Read secrets from the environment or Key Vault, never from code or config files in the repository."
+  },
+  {
+    "id": "STD-CODE-07",
+    "title": "Data access and migrations",
+    "category": "coding",
+    "content": "All schema changes are versioned migrations that run automatically on deploy and can be rolled back. Data access goes through a repository or data layer, not from controllers or UI. Use transactions for multi-step writes. Add indexes for every foreign key and every column used in frequent filters. Timestamps are stored in UTC."
+  },
+  {
+    "id": "STD-CODE-08",
+    "title": "Source control and review",
+    "category": "coding",
+    "content": "Work on a short-lived branch per task named <task-id>-<short-description>. Commits are small and use imperative messages that reference the task id (T-003: Add booking clash check). Every change is reviewed by one other engineer, passes lint, type checks and tests in CI, and updates documentation when behaviour changes."
+  }
+]

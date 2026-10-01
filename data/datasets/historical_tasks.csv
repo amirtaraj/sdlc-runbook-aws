@@ -1,0 +1,31 @@
+task_id,project,category,title,estimate_days,actual_days
+H-001,Expense Portal,setup,Create repository and CI pipeline,1,1
+H-002,Expense Portal,backend,Build expense claim API,2,2.5
+H-003,Expense Portal,frontend,Build claim submission form,2,2
+H-004,Expense Portal,integration,Integrate with finance system,2,3.5
+H-005,Expense Portal,data,Design claims database schema,1,1
+H-006,Expense Portal,security,Add Entra ID sign-in and roles,1.5,2.5
+H-007,Expense Portal,testing,Write integration tests for claims,1.5,2
+H-008,Expense Portal,devops,Deploy to Container Apps,1,1.5
+H-009,Expense Portal,documentation,Write user guide and runbook,0.5,0.5
+H-010,Room Booking,setup,Scaffold solution and pipelines,1,1
+H-011,Room Booking,backend,Build booking and availability API,3,3
+H-012,Room Booking,frontend,Build calendar view,3,3.5
+H-013,Room Booking,integration,Sync with Exchange calendars,2,4
+H-014,Room Booking,data,Model rooms and bookings,1,1
+H-015,Room Booking,testing,End-to-end tests for booking flow,2,2
+H-016,Room Booking,devops,Infrastructure as code for environments,1.5,2
+H-017,Room Booking,security,Role-based access for facilities admins,1,1.5
+H-018,Asset Tracker,backend,Build asset CRUD API,2,2
+H-019,Asset Tracker,frontend,Build asset list and detail pages,2,2.5
+H-020,Asset Tracker,integration,Import assets from procurement API,2,3
+H-021,Asset Tracker,data,Migrate legacy spreadsheet data,1.5,2.5
+H-022,Asset Tracker,testing,Unit and API tests,1.5,1.5
+H-023,Asset Tracker,documentation,Admin documentation,0.5,1
+H-024,Asset Tracker,devops,Monitoring dashboards and alerts,1,1
+H-025,Training Hub,backend,Course enrolment API,2,2.5
+H-026,Training Hub,frontend,Course catalogue UI,2,2
+H-027,Training Hub,integration,Send notifications via notification service,1,1.5
+H-028,Training Hub,security,Audit logging for enrolments,1,1.5
+H-029,Training Hub,testing,Accessibility and regression tests,1,1.5
+H-030,Training Hub,setup,Project setup and environments,1,0.5

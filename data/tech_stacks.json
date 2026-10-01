@@ -1,0 +1,75 @@
+[
+  {
+    "id": "python-fastapi-react",
+    "name": "Python · FastAPI · React",
+    "layers": {
+      "backend": "Python 3.12, FastAPI, Pydantic v2",
+      "frontend": "React 18, TypeScript 5, Vite",
+      "database": "PostgreSQL 16, SQLAlchemy 2 (async), Alembic migrations",
+      "testing": "pytest + httpx TestClient (backend), Vitest + React Testing Library (frontend), Playwright (end-to-end)",
+      "quality": "ruff (lint + format), mypy --strict, ESLint + Prettier",
+      "hosting": "Docker, Azure Container Apps"
+    },
+    "conventions": [
+      "Backend layout: app/api (routers), app/services (business logic), app/repositories (data access), app/models (ORM), app/schemas (Pydantic), tests/ mirroring app/.",
+      "Frontend layout: src/api (typed client), src/components, src/pages, src/hooks, src/types; one component per file.",
+      "Python names: snake_case functions and modules, PascalCase classes, UPPER_CASE constants. TypeScript: camelCase, PascalCase components and types.",
+      "Dependency injection through FastAPI Depends; no module-level database sessions.",
+      "Configuration through pydantic-settings from environment variables."
+    ]
+  },
+  {
+    "id": "dotnet-react",
+    "name": ".NET · ASP.NET Core · React",
+    "layers": {
+      "backend": "C# 12, .NET 8, ASP.NET Core Web API (controllers)",
+      "frontend": "React 18, TypeScript 5, Vite",
+      "database": "Azure SQL Database, Entity Framework Core 8 with code-first migrations",
+      "testing": "xUnit + FluentAssertions + WebApplicationFactory (backend), Vitest + React Testing Library (frontend), Playwright (end-to-end)",
+      "quality": "dotnet format, .NET analyzers with warnings as errors, ESLint + Prettier",
+      "hosting": "Docker, Azure Container Apps"
+    },
+    "conventions": [
+      "Solution layout: src/<App>.Api, src/<App>.Application (use cases), src/<App>.Domain, src/<App>.Infrastructure; tests/<Project>.Tests per project.",
+      "C# names: PascalCase types, methods and properties; camelCase locals and parameters; _camelCase private fields; async methods end in Async.",
+      "Dependency injection through the built-in container; options pattern for configuration.",
+      "Nullable reference types enabled in every project."
+    ]
+  },
+  {
+    "id": "node-nestjs-react",
+    "name": "Node.js · NestJS · React",
+    "layers": {
+      "backend": "Node.js 20, TypeScript 5, NestJS 10",
+      "frontend": "React 18, TypeScript 5, Vite",
+      "database": "PostgreSQL 16, Prisma ORM with migrations",
+      "testing": "Jest + Supertest (backend), Vitest + React Testing Library (frontend), Playwright (end-to-end)",
+      "quality": "ESLint (typescript-eslint strict) + Prettier, tsc --noEmit in CI",
+      "hosting": "Docker, Azure Container Apps"
+    },
+    "conventions": [
+      "Backend layout: src/<feature>/ with <feature>.module.ts, .controller.ts, .service.ts, dto/, and <feature>.spec.ts next to the code.",
+      "Names: camelCase variables and functions, PascalCase classes and types, kebab-case file names.",
+      "Validation with class-validator DTOs on every controller input.",
+      "Configuration through @nestjs/config from environment variables."
+    ]
+  },
+  {
+    "id": "java-spring-angular",
+    "name": "Java · Spring Boot · Angular",
+    "layers": {
+      "backend": "Java 21, Spring Boot 3 (Web, Validation, Data JPA)",
+      "frontend": "Angular 17, TypeScript 5",
+      "database": "PostgreSQL 16, Spring Data JPA, Flyway migrations",
+      "testing": "JUnit 5 + Mockito + Spring Boot Test (backend), Jasmine/Karma (frontend), Playwright (end-to-end)",
+      "quality": "Spotless (google-java-format), Checkstyle, ESLint + Prettier",
+      "hosting": "Docker, Azure Container Apps"
+    },
+    "conventions": [
+      "Backend layout: com.<org>.<app>.<feature> packages with controller, service, repository, model and dto sub-packages.",
+      "Names: camelCase methods and variables, PascalCase classes, UPPER_SNAKE constants.",
+      "Constructor injection only; no field injection.",
+      "Configuration through application.yml with environment-variable overrides."
+    ]
+  }
+]

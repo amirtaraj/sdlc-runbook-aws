@@ -1,0 +1,131 @@
+/* Design tokens: colours, fonts, spacing, radii and shadows for the whole UI. Change the palette
+   here; components only use these variables.
+
+   <html data-theme> is always "light" or "dark": public/theme-init.js resolves it before
+   first paint (saved choice or OS setting) and the ThemeProvider keeps it in sync. */
+:root {
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  --font-mono: "Cascadia Code", ui-monospace, Consolas, monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  /* Corner radii */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+
+  /* ---- Light theme ---- */
+  --bg: #F8F6FB;
+  --surface: #FFFFFF;
+  --surface-muted: #F0ECF6;
+  --surface-sunken: #EAE5F1;
+  --border: #E2DBEC;
+  --border-strong: #CFC5DE;
+  --text-primary: #1B1523;
+  --text-secondary: #3E3548;
+  --text-tertiary: #625A6D;
+
+  --primary: #6D3FB5;
+  --primary-hover: #572F95;
+  --primary-soft: #F1EAFB;
+  --primary-text: #FFFFFF;
+  --focus-ring: 0 0 0 3px rgba(109, 63, 181, 0.28);
+
+  --sidebar-bg: #1D1330;
+  --sidebar-surface: #281B42;
+  --sidebar-border: #2F2148;
+  --sidebar-active: #352455;
+  --sidebar-text: #F1EBFA;
+  --sidebar-muted: #B8A9D2;
+  --sidebar-accent: #A987E8;
+
+  --success: #2E7D32;  --success-bg: #E8F5E9;
+  --danger: #B42318;   --danger-bg: #FDECEA;
+  --warning: #9A5B00;  --warning-bg: #FFF3DC;
+
+  --accent-1: #5B6B7A;  --accent-1-bg: #EDF0F3;   /* slate */
+  --accent-2: #6B7F2A;  --accent-2-bg: #F0F3E3;   /* olive */
+  --accent-3: #9A6B4F;  --accent-3-bg: #F5ECE6;   /* clay */
+  --accent-4: #4F7A5A;  --accent-4-bg: #E8F1EA;   /* moss */
+  --accent-5: #A8741A;  --accent-5-bg: #F8EEDB;   /* ochre */
+  --accent-6: #A34A28;  --accent-6-bg: #F7E7DF;   /* rust */
+  --accent-7: #5E7462;  --accent-7-bg: #EAF0EB;   /* sage */
+  --accent-8: #7A6A5A;  --accent-8-bg: #F1ECE7;   /* taupe */
+
+  --shadow-sm: 0 1px 2px rgba(29, 19, 48, 0.08);
+  --shadow-card: 0 1px 2px rgba(29, 19, 48, 0.08), 0 10px 28px -10px rgba(109, 63, 181, 0.18);
+  --shadow-pop: 0 16px 40px -12px rgba(29, 19, 48, 0.35);
+
+  /* Glow and depth */
+  --grad-primary: linear-gradient(135deg, #6D3FB5 0%, #8456CC 100%);
+  --grad-primary-hover: linear-gradient(135deg, #572F95 0%, #6D3FB5 100%);
+  --glow-halo: rgba(109, 63, 181, 0.16);
+  --primary-glow: rgba(109, 63, 181, 0.35);
+  --shadow-tint: rgba(109, 63, 181, 0.12);
+
+  /* ---- Aliases used by the components ---- */
+  --text: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --text-subtle: var(--text-tertiary);
+  --grad-text: linear-gradient(var(--text), var(--text));   /* solid text colour */
+  --glow: linear-gradient(transparent, transparent);        /* page background stays flat */
+  color-scheme: light;
+}
+
+/* ---- Dark theme ---- */
+:root[data-theme="dark"] {
+  --bg: #120E18;
+  --surface: #1B1624;
+  --surface-muted: #231D2F;
+  --surface-sunken: #0E0B13;
+  --border: #332A42;
+  --border-strong: #433853;
+  --text-primary: #F3EFF8;
+  --text-secondary: #D9D2E4;
+  --text-tertiary: #B3AAC2;
+
+  --primary: #A987E8;
+  --primary-hover: #BEA3F0;
+  --primary-soft: #2A1F40;
+  --primary-text: #120A1F;
+  --focus-ring: 0 0 0 3px rgba(169, 135, 232, 0.4);
+
+  --sidebar-bg: #0B0712;
+  --sidebar-surface: #171022;
+  --sidebar-border: #1F162D;
+  --sidebar-active: #251936;
+  --sidebar-text: #F1EBFA;
+  --sidebar-muted: #B8A9D2;
+  --sidebar-accent: #A987E8;
+
+  --success: #6FCF7A;  --success-bg: #15291A;
+  --danger: #FF8A7A;   --danger-bg: #3A1C18;
+  --warning: #F5B356;  --warning-bg: #3A2A12;
+
+  --accent-1: #9FB0C0;  --accent-1-bg: #1C2229;
+  --accent-2: #B5C96E;  --accent-2-bg: #232A12;
+  --accent-3: #D4A487;  --accent-3-bg: #2E2019;
+  --accent-4: #8FC39C;  --accent-4-bg: #16261A;
+  --accent-5: #E6B45C;  --accent-5-bg: #2F2412;
+  --accent-6: #E8906A;  --accent-6-bg: #331A11;
+  --accent-7: #A6C2AB;  --accent-7-bg: #1A241C;
+  --accent-8: #C9B6A3;  --accent-8-bg: #28221C;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  --shadow-pop: 0 18px 48px -12px rgba(0, 0, 0, 0.7);
+
+  --grad-primary: linear-gradient(135deg, #A987E8 0%, #BEA3F0 100%);
+  --grad-primary-hover: linear-gradient(135deg, #BEA3F0 0%, #D2BEF5 100%);
+  --glow-halo: rgba(169, 135, 232, 0.18);
+  --primary-glow: rgba(169, 135, 232, 0.3);
+  --shadow-tint: rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}

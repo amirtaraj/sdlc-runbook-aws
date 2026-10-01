@@ -1,0 +1,13 @@
+[Unit]
+Description=SDLC Runbook local services (guardrails, knowledge search, work items)
+After=network.target
+
+[Service]
+User=__USER__
+WorkingDirectory=/opt/sdlc-runbook
+ExecStart=/opt/sdlc-runbook/.venv/bin/python -m uvicorn local_services.app:app --host 127.0.0.1 --port 8001
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

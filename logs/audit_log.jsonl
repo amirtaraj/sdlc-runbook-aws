@@ -1,0 +1,2 @@
+{"timestamp": "2026-10-01T16:13:33.279724+00:00", "actor": "mock:amirtaraj.r@gmail.com", "action": "run_created", "outcome": "success", "run_id": "20261001-214333-f9379c", "details": {"source": null, "tech_stack": "python-fastapi-react"}}
+{"timestamp": "2026-10-01T16:13:35.672561+00:00", "actor": "mock:amirtaraj.r@gmail.com", "action": "stage_run", "outcome": "failed", "run_id": "20261001-214333-f9379c", "details": {"stage": "classification", "status": "failed"}}
